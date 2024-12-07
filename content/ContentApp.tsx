@@ -48,9 +48,8 @@ import SpeechText from "./components/SpeechToText.tsx";
 //   };
 // }
 export default function ContentApp() {
-  const [isdialogOpen, setIsDialogOpen] = useState(true);
+  const [isDialogOpen, setIsDialogOpen] = useState(true);
   const [chatActive, setChatActive] = useState(false);
-  const [currentData, setCurrentData] = useState<any>({});
   const [roomId, setRoomId] = useState("");
 
   async function initSmith() {
@@ -64,14 +63,14 @@ export default function ContentApp() {
     setChatActive(true);
   }
 
-  if (!isdialogOpen) {
+  if (!isDialogOpen) {
     return (
       <div className="mx-auto p-6">
         <button
           onClick={() => setIsDialogOpen(true)}
           className="bg-white rounded-md p-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          Call Smith <span aria-hidden="true">+</span>
+          Call Hudson <span aria-hidden="true">+</span>
         </button>
       </div>
     );
@@ -84,10 +83,10 @@ export default function ContentApp() {
           {/* Main section with gradient border and logo, description, and chat button */}
           <div
             className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 
-    border-4 border-transparent bg-clip-border 
-    border-gradient-to-r from-blue-300 via-blue-500 to-blue-700 
-    rounded-xl 
-    shadow-[0_0_15px_rgba(135,206,250,0.8)]"
+            border-4 border-transparent bg-clip-border 
+            border-gradient-to-r from-blue-300 via-blue-500 to-blue-700 
+            rounded-xl 
+            shadow-[0_0_15px_rgba(135,206,250,0.8)]"
           >
             {/* Close Button */}
             <button
@@ -104,16 +103,19 @@ export default function ContentApp() {
                   className="relative inline-block w-20 rounded-xl"
                 />
               </div>
+              {/* Conditionally Render Heading */}
               <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Chat with Hudson, your personalized Meet AI assistant
+                {chatActive
+                  ? "Hi, I'm Hudson — your scribe for this meeting"
+                  : "Chat with Hudson, your personalized Meet AI assistant"}
               </h2>
+              {/* Conditionally Render Description */}
               <p className="mt-6 text-md leading-8 text-gray-300">
-                Hudson is an AI-powered assistant that captures and stores
-                meeting discussions in real-time. With simple voice queries, you
-                can retrieve any information or insights from past meetings
-                instantly. Simply ask, and get accurate, context-aware responses
-                from your stored meeting data.
+                {chatActive
+                  ? "Hudson is ready to capture and summarize your meeting notes. Speak and let Hudson handle the transcription."
+                  : "Hudson is an AI-powered assistant that captures and stores meeting discussions in real-time. With simple voice queries, you can retrieve any information or insights from past meetings instantly. Simply ask, and get accurate, context-aware responses from your stored meeting data."}
               </p>
+              {/* Conditionally Render Button or SpeechText */}
               {!chatActive ? (
                 <button
                   onClick={initSmith}
