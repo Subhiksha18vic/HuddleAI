@@ -121,6 +121,7 @@
 
 // export default SpeechToText;
 import React, { useState, useEffect } from "react";
+import {getEmbedding} from "../utils/getEmbeddings"
 
 const SpeechToText = () => {
   const [text, setText] = useState(""); // To store the recognized text
@@ -137,7 +138,7 @@ const SpeechToText = () => {
 
     // SpeechRecognition configuration
     recognition.continuous = true; // Keep listening for speech
-    recognition.interimResults = true; // Only return final results
+    recognition.interimResults = false; // Only return final results
     recognition.lang = "en-US"; // Language for recognition
   } else {
     console.error("SpeechRecognition not supported in this browser");
@@ -154,14 +155,19 @@ const SpeechToText = () => {
     setIsListening(true);
 
     // Event listeners
-    recognition.onresult = (event) => {
+    recognition.onresult = async (event) => {
       let spokenText = "";
       for (let i = event.resultIndex; i < event.results.length; i++) {
         // Check if the result is final (i.e., the speech has ended)
         if (event.results[i].isFinal) {
-          spokenText += event.results[i][0].transcript;
+            spokenText += event.results[i][0].transcript;
         }
       }
+      if(spokenText != "") {
+          const embed = await getEmbedding(spokenText)
+          console.log(embed.data[0].embedding)
+      }
+
 
       // Only update the text state when we have the final result
       if (spokenText) {
