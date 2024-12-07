@@ -1,4 +1,4 @@
-# smith
+# HuddleAI
 
 > This project was bootstrapped using the Extension.js React-TypeScript template.
 
