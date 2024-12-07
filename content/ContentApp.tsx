@@ -80,23 +80,14 @@ export default function ContentApp() {
     <Providers>
       <div className="mx-auto max-w-7xl md:px-0 lg:p-6">
         <Layout>
-          {/* Main section with gradient border and logo, description, and chat button */}
-          {/* <div
-            className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-12 lg:pt-0 
-            border-4 border-transparent bg-clip-border 
-            border-gradient-to-r from-blue-300 via-blue-500 to-blue-700 
-            rounded-xl 
-            shadow-[0_0_15px_rgba(135,206,250,0.8)]
-            mt-12 lg:mt-24 lg:max-w-4xl lg:h-[95vh]"
-          > */}
           <div
             className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl 
-            lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-12 lg:pt-0 
-            border-4 border-transparent bg-clip-border 
-            border-gradient-to-r from-blue-300 via-blue-500 to-blue-700 
-            rounded-xl 
-            shadow-[0_0_15px_rgba(135,206,250,0.8)]
-            lg:mt-12 lg:max-w-xl lg:h-[95vh]"
+          lg:rounded-3xl md:pt-24 sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-12 lg:pt-0 
+          border-4 border-transparent bg-clip-border 
+          border-gradient-to-r from-blue-300 via-blue-500 to-blue-700 
+          rounded-xl 
+          shadow-[0_0_15px_rgba(135,206,250,0.8)]
+          lg:mt-12 lg:max-w-xl lg:h-[95vh]"
           >
             {/* Close Button */}
             <button
@@ -105,7 +96,12 @@ export default function ContentApp() {
             >
               X
             </button>
-            <div className="mx-auto max-w-md text-center lg:py-12 lg:mx-0 lg:flex-auto lg:text-left">
+            <div
+              className="mx-auto max-w-md text-center lg:py-12 lg:mx-0 lg:flex-auto lg:text-left overflow-y-auto"
+              style={{
+                maxHeight: "85vh", // Restrict height
+              }}
+            >
               <div className="flex items-center justify-start space-x-4 my-4 mx-auto">
                 <img
                   alt="logo"
