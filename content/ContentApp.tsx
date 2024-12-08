@@ -6,7 +6,8 @@ import { Providers } from "./Providers";
 import Chat from "./components/Chat";
 import processAccount from "./utils/processAccount";
 import processTx from "./utils/processTx";
-import SpeechText from "./components/SpeechToText";
+import SpeechText from "./components/SpeechToText.tsx";
+// import ChatComponent from "./components/Chat";
 
 // async function parseUrlToJson(
 //   url: string
@@ -125,7 +126,7 @@ export default function ContentApp() {
               {!chatActive ? (
                 <button
                   onClick={initSmith}
-                  className="bg-zinc-100 mt-6 py-2 px-2 rounded-2xl text-zinc-800 text-md hover:bg-zinc-200 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white mt-2 font-bold"
+                  className="bg-blue-500 text-white px-4 py-2 rounded mr-2 mt-6 py-2 font-semibold"
                 >
                   Call Hudson to initiate chat
                 </button>
