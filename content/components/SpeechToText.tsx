@@ -35,13 +35,44 @@ const SpeechToText = () => {
     recognition.start();
     setIsListening(true);
 
-    recognition.onresult = (event) => {
+    // Event listeners
+    recognition.onresult = async (event) => {
       let spokenText = "";
       for (let i = event.resultIndex; i < event.results.length; i++) {
+        // Check if the result is final (i.e., the speech has ended)
         if (event.results[i].isFinal) {
           spokenText += event.results[i][0].transcript;
         }
       }
+      if (spokenText != "") {
+        const insertIntoDB = async () => {
+          const meetingId = window.location.href.split("/").pop();
+
+          await fetch("http://localhost:3000/insert-embeddings", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              meetingId,
+              query: spokenText,
+            }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                console.log("Successfully inserted into DB");
+              } else {
+                console.error("Failed to insert into DB");
+              }
+            })
+            .catch((error) => {
+              console.error("Error inserting into DB: ", error);
+            });
+        };
+        insertIntoDB();
+      }
+
+      // Only update the text state when we have the final result
       if (spokenText) {
         setText((prevText) => prevText + " " + spokenText);
       }

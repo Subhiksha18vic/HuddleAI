@@ -6,8 +6,7 @@ import { Providers } from "./Providers";
 import Chat from "./components/Chat";
 import processAccount from "./utils/processAccount";
 import processTx from "./utils/processTx";
-import SpeechText from "./components/SpeechToText.tsx";
-// import ChatComponent from "./components/Chat";
+import SpeechText from "./components/SpeechToText";
 
 // async function parseUrlToJson(
 //   url: string
