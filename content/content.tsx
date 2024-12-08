@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import ContentApp from "./ContentApp";
+// @ts-expect-error
 import("./base.css");
+// @ts-expect-error
 import("./content.css");
 
 setTimeout(initial, 1000);

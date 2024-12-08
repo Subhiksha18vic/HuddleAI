@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+// @ts-expect-error
 import logo from "../public/logo.webp";
-import chromeWindowBg from "../public/chromeWindow.png";
 import Layout from "./components/Layout";
 import { Providers } from "./Providers";
 import Chat from "./components/Chat";
 import processAccount from "./utils/processAccount";
 import processTx from "./utils/processTx";
-import SpeechText from "./components/SpeechToText.tsx";
+import SpeechText from "./components/SpeechToText";
 // import ChatComponent from "./components/Chat";
 
 // async function parseUrlToJson(
